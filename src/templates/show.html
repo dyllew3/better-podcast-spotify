@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+<title>Podcast page</title>
+{% if podcast %}
+  <h1>{{ podcast.name }}!</h1>
+{% else %}
+  <h1>Hello, World!</h1>
+{% endif %}
+</head>
+<body>
+{% for episode in podcast.episodes["items"]  %}
+<p>{{ episode.description }}</p>
+{% endfor %}
+
+</body>
+</html>
