@@ -5,7 +5,7 @@ from markupsafe import escape
 from spotipy.client import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 
-from search import PodcastInfo, load_podcast_from_json
+from podcast import PodcastInfo, load_podcast_from_json
 
 app: Flask = Flask(__name__)
 app.config['JSON_AS_ASCII'] = True

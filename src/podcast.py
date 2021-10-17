@@ -16,7 +16,6 @@ class Episodes:
         self.offset = offset
         self.previous = previous
         self.total = total
-        print(self.__dict__)
 
 class PodcastInfo:
     """Class for representing information about a podcast."""
@@ -70,11 +69,11 @@ class PodcastInfo:
         self.publisher: str = publisher
         self.type = type
         self.uri = uri
-        self.episodes = episodes
+        #self.episodes = episodes
         # set episode
-        #self.episodes = Episodes(episodes["href"],
-        #    items=episodes["items"], limit=episodes["limit"], next=episodes["next"],
-        #    offset=episodes["offset"], previous=episodes["previous"], total=episodes["total"])
+        self.episodes = Episodes(episodes["href"],
+            items=episodes["items"], limit=episodes["limit"], next=episodes["next"],
+            offset=episodes["offset"], previous=episodes["previous"], total=episodes["total"])
 
     def load_episodes(self, amount: int = 50) -> None:
         """"""
