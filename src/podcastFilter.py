@@ -1,18 +1,16 @@
-import json
 from typing import Any, Union
-from flask import Flask, render_template, jsonify
-from markupsafe import escape
+from flask import Flask, render_template, request, jsonify
 from spotipy.client import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 from episode import Episode, load_episode_from_json
 
 from podcast import PodcastInfo, load_podcast_from_json
 
-app: Flask = Flask(__name__)
+app: Flask = Flask(__name__, static_folder="static\\")
 app.config['JSON_AS_ASCII'] = True
 
 scope = "user-library-read"
-sp = Spotify(auth_manager=SpotifyOAuth())
+sp = Spotify()
 
 @app.route("/")
 def home() -> str:
@@ -21,6 +19,19 @@ def home() -> str:
 @app.route("/search")
 def search() -> str:
     return ""
+
+@app.route("/next", methods = ["POST"])
+def load_episodes() -> None:
+    try:
+        if request.is_json:
+            return "Invalid json body given", 400
+
+        body_json: Union[Any, None] = request.get_json()
+        
+        return jsonify(sp.next(body_json))
+    except Exception as err:
+        print(err)
+        return "Exception occured when getting next", 500
 
 @app.route("/show/<id>")
 def get_show_id(id: str) -> Union[str, None]:

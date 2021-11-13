@@ -1,7 +1,7 @@
 import json
 from typing import Any, Dict, List, Union
 
-class Episodes:
+class Episodes(dict):
     def __init__(self, href: str = None, items: List[Dict[str, Any]] = None,
     limit: int = None,
     next: str = None,
@@ -17,7 +17,7 @@ class Episodes:
         self.previous = previous
         self.total = total
 
-class PodcastInfo:
+class PodcastInfo(dict):
     """Class for representing information about a podcast."""
     def __init__(self, name: str = None, id: str = None,
         available_markets: List[str] = None,

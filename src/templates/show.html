@@ -6,7 +6,10 @@
 <title>Podcast page</title>
 </head>
 <body>
-<h1 class="container">{{ podcast.name }}!</h1>
+<script>
+    let blah = {{ podcast.__dict__|tojson|safe }};
+</script>
+<h1 class="container">{{ podcast.name }}</h1>
 {% for episode in podcast.episodes.items  %}
 <div class="container border border-secondary mt-2">
   
