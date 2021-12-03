@@ -1,3 +1,4 @@
+import os
 from typing import Any, Union
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -12,7 +13,11 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 scope = "user-library-read"
-sp = Spotify()
+sp = Spotify(auth_manager=SpotifyOAuth(
+    client_id=os.environ['client_id'],
+    client_secret=os.environ['client_secret'],
+    scope=scope,
+    redirect_uri=os.environ['redirect_uri']))
 
 @app.route("/")
 @app.route("/show/<id>")
