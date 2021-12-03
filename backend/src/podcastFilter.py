@@ -12,7 +12,11 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 scope = "user-library-read"
-sp = Spotify()
+sp = Spotify(auth_manager=SpotifyOAuth(
+    client_id="733a27a2bfa94ae9b8eae20cd4a9a6a9",
+    client_secret="826b83861cab453dacc25635bd75e970",
+    scope=scope,
+    redirect_uri="http://127.0.0.1:5000"))
 
 @app.route("/")
 @app.route("/show/<id>")

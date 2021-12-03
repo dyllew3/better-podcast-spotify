@@ -6,18 +6,20 @@
 <title>Podcast page</title>
 </head>
 <body>
+<script src="/static/bundle.js"></script>
 <script>
     let blah = {{ podcast.__dict__|tojson|safe }};
+    querying.getNextSetOfEpisodes("http://127.0.0.1:5000/next", blah);
 </script>
 <h1 class="container">{{ podcast.name }}</h1>
-{% for episode in podcast.episodes.items  %}
+{% for episode in podcast.episodes["items"]  %}
 <div class="container border border-secondary mt-2">
   
-  <h3><img src="{{ episode.images[2]["url"] }}"/> <a href="http://127.0.0.1:5000/episode/{{episode.id}}"> {{ episode.name }}</a></h3>
-  {% if episode.description|length > 350 %}
-    <p>{{ episode.description[:350] + " ..." }}</p>
+  <h3><img src="{{ episode["images"][2]["url"] }}"/> <a href="http://127.0.0.1:5000/episode/{{episode["id"]}}"> {{ episode["name"] }}</a></h3>
+  {% if episode["description"]|length > 350 %}
+    <p>{{ episode["description"][:350] + " ..." }}</p>
   {% else %}
-    <p>{{ episode.description }}</p>
+    <p>{{ episode["description"] }}</p>
   {% endif %}
 </div>
 {% endfor %}

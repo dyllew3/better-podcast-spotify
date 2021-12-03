@@ -2,7 +2,7 @@
 const path = require('path')
 
 module.exports = {
-  outputDir: path.resolve(__dirname, '..\\src\\static'),
+  outputDir: path.resolve(__dirname, '..\\backend\\src\\static'),
   publicPath: process.env.NODE_ENV === 'production'
   ? '/static/'
   : '/'
