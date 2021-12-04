@@ -37,7 +37,6 @@ def load_episodes() -> None:
         print(err)
         return "Exception occured when getting next", 500
 
-
 @app.route("/v1/show/<id>")
 def get_show_object(id: str) -> Response:
     try:
