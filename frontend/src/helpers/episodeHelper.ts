@@ -9,8 +9,8 @@ import { Podcast } from '../models/podcast'
  * @returns {Promises<Episodes>} The next episode interface.
  * @throws Throws an exception when the data can't be parsed
  */
-export async function loadMoreEpisodesAsync (url: string, podcast: Podcast): Promise<Episodes> {
-  const response = await axios.post<Episodes>(url, podcast)
+export async function loadMoreEpisodesAsync (url: string, podcast: Podcast): Promise<Podcast> {
+  const response = await axios.post<Podcast>(url, podcast)
   if (response.status === 200) {
     // Check if data is valid
     if (!response.data) {

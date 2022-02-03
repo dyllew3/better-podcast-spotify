@@ -132,3 +132,6 @@ dmypy.json
 .pyre/
 
 static/
+
+.flask_session/
+.spotify_caches/

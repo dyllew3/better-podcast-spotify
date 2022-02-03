@@ -35,8 +35,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 import { Podcast } from '@/models/podcast'
-import { loadMoreEpisodesAsync, mergeEpisodes } from '@/helpers/episodeHelper'
-import { Episodes } from '@/models/episodes'
+import { loadMoreEpisodesAsync } from '@/helpers/episodeHelper'
 import { displayDateString } from '../helpers/dateHelper'
 
 interface Props {
@@ -78,8 +77,7 @@ export default Vue.extend<ShowListData, unknown, unknown, Props>({
       try {
         // Check if podcast has been loaded
         if (this.podcastVal) {
-          const episodes: Episodes = await loadMoreEpisodesAsync('http://127.0.0.1:5000/next', this.podcastVal)
-          this.podcastVal = mergeEpisodes(this.podcastVal, episodes)
+          this.podcastVal = await loadMoreEpisodesAsync('http://127.0.0.1:5000/next', this.podcastVal)
         } else {
           console.debug('No podcast loaded')
         }
